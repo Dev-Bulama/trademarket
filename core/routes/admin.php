@@ -393,4 +393,11 @@ Route::middleware('admin')->group(function () {
             Route::post('manage-section/{id}', 'manageSectionUpdate')->name('manage.section.update');
         });
     });
+
+    // Custom Landing Page Override
+    Route::controller('LandingPageController')->prefix('landing-page')->name('landing.')->group(function () {
+        Route::get('/',       'index')->name('index');
+        Route::post('save',   'save')->name('save');
+        Route::get('preview', 'preview')->name('preview');
+    });
 });

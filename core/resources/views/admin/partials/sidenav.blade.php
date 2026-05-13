@@ -567,6 +567,13 @@
 
                 <li class="sidebar__menu-header">@lang('Frontend Manager')</li>
 
+                <li class="sidebar-menu-item {{menuActive('admin.landing.*')}}">
+                    <a href="{{route('admin.landing.index')}}" class="nav-link">
+                        <i class="menu-icon las la-paint-brush"></i>
+                        <span class="menu-title">@lang('Custom Landing Page')</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-menu-item {{menuActive('admin.frontend.templates')}}">
                     <a href="{{route('admin.frontend.templates')}}" class="nav-link ">
                         <i class="menu-icon la la-html5"></i>
