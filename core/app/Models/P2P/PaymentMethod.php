@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Models\P2P;
+
+use App\Models\Form;
+use App\Traits\GlobalStatus;
+use App\Traits\Searchable;
+use Illuminate\Database\Eloquent\Model;
+
+class PaymentMethod extends Model
+{
+    use GlobalStatus, Searchable;
+
+    protected $casts = [
+        'supported_currency' => 'array',
+    ];
+
+    protected $table = "p2p_payment_methods";
+
+    public function userData()
+    {
+        return $this->belongsTo(Form::class, 'form_id');
+    }
+}
