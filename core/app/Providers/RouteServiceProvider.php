@@ -7,7 +7,6 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
-use Laramin\Utility\VugiChugi;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -31,7 +30,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::namespace($this->namespace)->middleware(VugiChugi::mdNm())->group(function(){
+            Route::namespace($this->namespace)->group(function(){
                 Route::prefix('api')
                 ->middleware(['api','maintenance'])
                 ->group(base_path('routes/api.php'));
