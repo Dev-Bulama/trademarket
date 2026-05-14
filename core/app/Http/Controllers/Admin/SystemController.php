@@ -11,7 +11,6 @@ use App\Rules\FileTypeValidate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Laramin\Utility\VugiChugi;
 
 class SystemController extends Controller
 {
@@ -98,18 +97,15 @@ class SystemController extends Controller
 
         $param['code']    = $request->purchase_code;
         $param['url']     = env("APP_URL");
-        $param['email']    = auth()->guard('admin')->user()->email;
+        $param['email']   = auth()->guard('admin')->user()->email;
         $param['user']    = $request->envato_username;
         $param['product'] = systemDetails()['name'];
-        $reqRoute         = VugiChugi::lcLabSbm();
+        $reqRoute         = 'https://license.viserlab.com/activate';
         $response         = CurlRequest::curlPostContent($reqRoute, $param);
         $response         = json_decode($response);
 
-        if ($response->error == 'error') {
+        if ($response && $response->error == 'error') {
             $this->removeDir($dir);
-            $general = gs();
-            $general->maintenance_mode = 9;
-            $general->save();
             $notify[] = ['error', $response->message];
             return back()->withNotify($notify);
         }
