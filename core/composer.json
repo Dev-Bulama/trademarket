@@ -79,7 +79,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": ["laramin/utility"]
         }
     },
     "config": {
